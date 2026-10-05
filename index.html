@@ -24,7 +24,47 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:wght@700&display=swap">
   
   <!-- Fixed Shell CSS & JS -->
-  <style>/* Aumenta o ícone/logo do cabeçalho */
+  <style>/* Botão Contato com efeito Origin */
+.origin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  text-decoration: none;
+  border: 1px solid #e3e7ec;
+  background: #ffffff;
+  color: #111111;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+.origin-btn:hover, .origin-btn:focus-visible { color: #ffffff; }
+.origin-btn .fill {
+  position: absolute;
+  border-radius: 50%;
+  background: #111111;
+  width: 0; height: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+.origin-btn:hover .fill, .origin-btn:focus-visible .fill {
+  width: 400px; height: 400px;
+}
+.origin-btn .label { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; }
+.origin-btn svg { width: 18px; height: 18px; }/* Aumenta o ícone/logo do cabeçalho */
 header img,
 .logo img,
 .navbar img,
@@ -1489,12 +1529,15 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
 
         <!-- CTAs PRINCIPAIS -->
         <div class="hero-actions">
-          <a href="#formulario" class="btn-navy" id="heroCtaForm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-            <span>Contato</span>
-          </a>
+          <a href="https://wa.me/5518997312417?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento" class="origin-btn" aria-label="Fale conosco pelo WhatsApp">
+  <span class="fill" aria-hidden="true"></span>
+  <span class="label">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+    Contato
+  </span>
+</a>
 
           <a href="#modelos" class="btn-outline-navy">
             <span>Ver modelos de sites</span>
@@ -2629,5 +2672,18 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
 })();
 
 </script>
-</body>
+<script>
+  document.querySelectorAll('.origin-btn').forEach(function (btn) {
+    var fill = btn.querySelector('.fill');
+    function moveTo(x, y) {
+      var rect = btn.getBoundingClientRect();
+      fill.style.left = (x - rect.left) + 'px';
+      fill.style.top = (y - rect.top) + 'px';
+    }
+    btn.addEventListener('pointerenter', function (e) { moveTo(e.clientX, e.clientY); });
+    btn.addEventListener('pointermove', function (e) {
+      if (btn.matches(':hover')) moveTo(e.clientX, e.clientY);
+    });
+  });
+</script></body>
 </html>
