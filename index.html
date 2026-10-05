@@ -24,7 +24,61 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:wght@700&display=swap">
   
   <!-- Fixed Shell CSS & JS -->
-  <style>/* Botão Contato com efeito Origin */
+  <style>/* Botão Shiny com brilho animado */
+.shiny-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.65);
+  background: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.10) 0%, transparent 60%), #ffffff;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  font-family: inherit;
+  text-decoration: none;
+}
+.shiny-btn:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.18); }
+.shiny-btn:active { transform: scale(0.95); }
+
+/* Borda brilhante (gradiente) */
+.shiny-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(-75deg, rgba(0,0,0,0.10), rgba(0,0,0,0.50) 50%, rgba(0,0,0,0.10));
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Brilho que varre o botão */
+.shiny-btn::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  width: 45%;
+  left: -60%;
+  background: linear-gradient(-75deg, transparent, rgba(255,255,255,0.75) 50%, transparent);
+  transform: skewX(-15deg);
+  animation: shine 2.6s infinite;
+}
+@keyframes shine {
+  0%   { left: -60%; }
+  55%, 100% { left: 130%; }
+}/* Botão Contato com efeito Origin */
 .origin-btn {
   display: inline-flex;
   align-items: center;
@@ -1539,12 +1593,9 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
   </span>
 </a>
 
-          <a href="#modelos" class="btn-outline-navy">
-            <span>Ver modelos de sites</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </a>
+          <a href="https://wa.me/5518997312417?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento" class="shiny-btn">
+  ver modelos de site
+</a>
         </div>
 
         <!-- SELOS DE CONFIANÇA -->
