@@ -2714,7 +2714,19 @@ table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 
         successBox.classList.add('active');
 
         // Abre a janela do WhatsApp em nova aba
-        window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');// ===== NOVO: também salva o lead na planilha =====
+fetch('hhttps://script.google.com/macros/s/AKfycbx_2aATllqMNaRfeV48McpUC6Xqia4jSL9bufAYJdoPDZ82T4Z_3za85y7jWNhnrFlE/exec', {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    nome: name,
+    email: email,
+    telefone: phone,
+    tipoSite: siteType,
+    mensagem: desc
+  })
+});
 
         // Limpa parcialmente o formulário para evitar envios duplicados acidentais
         setTimeout(() => {
